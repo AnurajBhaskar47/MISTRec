@@ -1,3 +1,6 @@
 [submodule "MM23-MISSRec"]
 	path = MM23-MISSRec
 	url = https://github.com/gimpong/MM23-MISSRec
+[submodule "UniSRec"]
+	path = UniSRec
+	url = https://github.com/RUCAIBox/UniSRec
