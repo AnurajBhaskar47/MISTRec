@@ -1,0 +1,179 @@
+Sun 27 Oct 2024 22:24:19 INFO  
+General Hyper Parameters:
+gpu_id = 0
+use_gpu = True
+seed = 2020
+state = INFO
+reproducibility = True
+data_path = dataset/downstream/Pantry
+checkpoint_dir = saved
+show_progress = True
+save_dataset = False
+dataset_save_path = None
+save_dataloaders = False
+dataloaders_save_path = None
+log_wandb = False
+
+Training Hyper Parameters:
+epochs = 300
+train_batch_size = 2048
+learner = adam
+learning_rate = 0.001
+train_neg_sample_args = {'distribution': 'none', 'sample_num': 'none', 'alpha': 'none', 'dynamic': False, 'candidate_num': 0}
+eval_step = 1
+stopping_step = 10
+clip_grad_norm = None
+weight_decay = 0.0
+loss_decimal_place = 4
+
+Evaluation Hyper Parameters:
+eval_args = {'split': {'LS': 'valid_and_test'}, 'order': 'TO', 'group_by': 'user', 'mode': {'valid': 'full', 'test': 'full'}}
+repeatable = True
+metrics = ['HIT', 'NDCG']
+topk = [10, 50]
+valid_metric = NDCG@10
+valid_metric_bigger = True
+eval_batch_size = 2048
+metric_decimal_place = 4
+
+Dataset Hyper Parameters:
+field_separator = 	
+seq_separator =  
+USER_ID_FIELD = user_id
+ITEM_ID_FIELD = item_id
+RATING_FIELD = rating
+TIME_FIELD = timestamp
+seq_len = None
+LABEL_FIELD = label
+threshold = None
+NEG_PREFIX = neg_
+load_col = {'inter': ['user_id', 'item_id_list', 'item_id']}
+unload_col = None
+unused_col = None
+additional_feat_suffix = None
+rm_dup_inter = None
+val_interval = None
+filter_inter_by_user_or_item = True
+user_inter_num_interval = [0,inf)
+item_inter_num_interval = [0,inf)
+alias_of_user_id = None
+alias_of_item_id = ['item_id_list']
+alias_of_entity_id = None
+alias_of_relation_id = None
+preload_weight = None
+normalize_field = None
+normalize_all = None
+ITEM_LIST_LENGTH_FIELD = item_length
+LIST_SUFFIX = _list
+MAX_ITEM_LIST_LENGTH = 50
+POSITION_FIELD = position_id
+HEAD_ENTITY_ID_FIELD = head_id
+TAIL_ENTITY_ID_FIELD = tail_id
+RELATION_ID_FIELD = relation_id
+ENTITY_ID_FIELD = entity_id
+benchmark_filename = ['train', 'valid', 'test']
+
+Other Hyper Parameters: 
+worker = 0
+wandb_project = recbole
+shuffle = True
+require_pow = False
+enable_amp = False
+enable_scaler = False
+transform = None
+numerical_features = []
+discretization = None
+kg_reverse_r = False
+entity_kg_num_interval = [0,inf)
+relation_kg_num_interval = [0,inf)
+MODEL_TYPE = ModelType.SEQUENTIAL
+n_layers = 2
+n_heads = 2
+hidden_size = 300
+inner_size = 256
+hidden_dropout_prob = 0.5
+attn_dropout_prob = 0.5
+hidden_act = gelu
+layer_norm_eps = 1e-12
+initializer_range = 0.02
+loss_type = CE
+item_drop_ratio = 0.2
+item_drop_coefficient = 0.9
+lambda = 0.001
+plm_suffix = feat1CLS
+plm_suffix_aug = feat2CLS
+train_stage = transductive_ft
+plm_size = 768
+adaptor_dropout_prob = 0.2
+adaptor_layers = [768, 300]
+temperature = 0.07
+n_exps = 8
+unisrec_transform = None
+MODEL_INPUT_TYPE = InputType.POINTWISE
+eval_type = EvaluatorType.RANKING
+single_spec = True
+local_rank = 0
+device = cuda
+valid_neg_sample_args = {'distribution': 'uniform', 'sample_num': 'none'}
+test_neg_sample_args = {'distribution': 'uniform', 'sample_num': 'none'}
+
+
+Sun 27 Oct 2024 22:24:20 INFO  Pantry
+The number of users: 13102
+Average actions of users: 8.691015952980688
+The number of items: 4899
+Average actions of items: 23.24642711310739
+The number of inters: 113861
+The sparsity of the dataset: 99.82260966283076%
+Remain Fields: ['user_id', 'item_id_list', 'item_id', 'item_length']
+Sun 27 Oct 2024 22:24:20 INFO  [Training]: train_batch_size = [2048] train_neg_sample_args: [{'distribution': 'none', 'sample_num': 'none', 'alpha': 'none', 'dynamic': False, 'candidate_num': 0}]
+Sun 27 Oct 2024 22:24:20 INFO  [Evaluation]: eval_batch_size = [2048] eval_args: [{'split': {'LS': 'valid_and_test'}, 'order': 'TO', 'group_by': 'user', 'mode': {'valid': 'full', 'test': 'full'}}]
+Sun 27 Oct 2024 22:24:20 INFO  Loading from saved/UniSRec-FHCKM-300.pth
+Sun 27 Oct 2024 22:24:20 INFO  Transfer [FHCKM] -> [Pantry
+The number of users: 13102
+Average actions of users: 8.691015952980688
+The number of items: 4899
+Average actions of items: 23.24642711310739
+The number of inters: 113861
+The sparsity of the dataset: 99.82260966283076%
+Remain Fields: ['user_id', 'item_id_list', 'item_id', 'item_length']]
+Sun 27 Oct 2024 22:24:20 INFO  Fix encoder parameters.
+Sun 27 Oct 2024 22:24:20 INFO  UniSRec(
+  (item_embedding): Embedding(4899, 300, padding_idx=0)
+  (position_embedding): Embedding(50, 300)
+  (trm_encoder): TransformerEncoder(
+    (layer): ModuleList(
+      (0-1): 2 x TransformerLayer(
+        (multi_head_attention): MultiHeadAttention(
+          (query): Linear(in_features=300, out_features=300, bias=True)
+          (key): Linear(in_features=300, out_features=300, bias=True)
+          (value): Linear(in_features=300, out_features=300, bias=True)
+          (softmax): Softmax(dim=-1)
+          (attn_dropout): Dropout(p=0.5, inplace=False)
+          (dense): Linear(in_features=300, out_features=300, bias=True)
+          (LayerNorm): LayerNorm((300,), eps=1e-12, elementwise_affine=True)
+          (out_dropout): Dropout(p=0.5, inplace=False)
+        )
+        (feed_forward): FeedForward(
+          (dense_1): Linear(in_features=300, out_features=256, bias=True)
+          (dense_2): Linear(in_features=256, out_features=300, bias=True)
+          (LayerNorm): LayerNorm((300,), eps=1e-12, elementwise_affine=True)
+          (dropout): Dropout(p=0.5, inplace=False)
+        )
+      )
+    )
+  )
+  (LayerNorm): LayerNorm((300,), eps=1e-12, elementwise_affine=True)
+  (dropout): Dropout(p=0.5, inplace=False)
+  (loss_fct): CrossEntropyLoss()
+  (plm_embedding): Embedding(4899, 768, padding_idx=0)
+  (moe_adaptor): MoEAdaptorLayer(
+    (experts): ModuleList(
+      (0-7): 8 x PWLayer(
+        (dropout): Dropout(p=0.2, inplace=False)
+        (lin): Linear(in_features=768, out_features=300, bias=False)
+      )
+    )
+  )
+)
+Trainable parameters: 3331932
